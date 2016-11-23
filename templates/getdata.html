@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <form method="POST">
+                    <span>
+                        <label for="for">For:</label>
+                        <input type="text" name="for" value="{{ param.for }}">
+                        </input>
+                    </span>
+                    <span>
+                        <label for="in">In:</label>
+                        <input type="text" name="in" value="{{ param.in }}">
+                        </input>
+                    </span>
+                    <button type="submit" class="btn-success" name="submit">
+                        Submit
+                    </button>
+                </form>
+            </div>
+            <table class="table">
+                <thead>
+                    <th>Tract Name</th>
+                    <th>Tract Number</th>
+                    <th>Total Households</th>
+                    <th>Households without a vehicle</th>
+                    <th>Ratio</th>
+                </thead>
+                <tbody>
+                {% for geo, loc in param.cols.items() %}
+                <tr>
+                    <td>{{ geo }}</td>
+                    <td>{{ loc['Tract'] }}</td>
+                    <td>{{ loc['001E'] }}</td>
+                    <td>{{ loc['002E'] }}</td>
+                    <td>{{ loc['Ratio'] }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </body>
+</html>
